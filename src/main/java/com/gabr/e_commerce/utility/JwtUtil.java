@@ -20,7 +20,7 @@ public class JwtUtil {
     public static final String SECRET_KEY = "62e0b10e3524bd7c112a432eca099a9238e877c94d17c" +
             "f9143b676eb44b27375";
 
-    private String generateToken(UserDetails userDetails) {
+    public String generateToken(UserDetails userDetails) {
         Map<String, Object> map = new HashMap<>();
         String role = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
@@ -29,7 +29,7 @@ public class JwtUtil {
        return Jwts.builder()
                .addClaims(map)
                .setIssuedAt(new Date(System.currentTimeMillis()))
-               .setExpiration(new Date(System.currentTimeMillis()+(60*60*24)))
+               .setExpiration(new Date(System.currentTimeMillis()+(1000 * 60 * 60 * 24)))
                .setSubject(userDetails.getUsername())
                .signWith(getSignKey(), SignatureAlgorithm.HS256)
                .compact();

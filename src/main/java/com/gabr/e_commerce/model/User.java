@@ -25,6 +25,7 @@ public class User implements UserDetails {
     private int userId;
     private String username;
     private String password;
+    @Enumerated(EnumType.STRING)
     private Role role = Role.USER;
 
     @Override
