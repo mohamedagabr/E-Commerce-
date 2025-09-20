@@ -1,8 +1,10 @@
 package com.gabr.e_commerce.model;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
-import org.springframework.boot.autoconfigure.web.WebProperties;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 @Setter
@@ -20,4 +22,8 @@ public class Product {
     private String productName;
    @Column(name = "price" ,precision = 10 , scale = 2)
     private BigDecimal price ;
+   @ManyToOne()
+   @JoinColumn(name = "category_id")
+   @JsonIgnore
+    private Category category ;
 }
