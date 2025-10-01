@@ -1,5 +1,6 @@
 package com.gabr.e_commerce.service;
 
+import com.gabr.e_commerce.dto.LoginDto;
 import com.gabr.e_commerce.dto.UserDto;
 import com.gabr.e_commerce.mapper.UserMapper;
 import com.gabr.e_commerce.model.User;
@@ -26,11 +27,11 @@ public class UserService {
         userRepository.save(user);
         return userMapper.toDto(user);
     }
-    public String loginUser(UserDto userDto){
+    public String loginUser(LoginDto loginDto){
         authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(userDto.getUsername(),userDto.getPassword())
+                new UsernamePasswordAuthenticationToken(loginDto.getUsername(),loginDto.getPassword())
         );
-        User user = userRepository.findByUsername(userDto.getUsername()).orElseThrow();
+        User user = userRepository.findByUsername(loginDto.getUsername()).orElseThrow();
         return jwtUtil.generateToken(user);
     }
 

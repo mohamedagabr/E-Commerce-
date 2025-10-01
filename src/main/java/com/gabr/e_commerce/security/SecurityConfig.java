@@ -18,7 +18,8 @@ public class SecurityConfig {
     SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(
                         configure -> configure
-                                .requestMatchers("/users/register","/users/login").permitAll()
+                                .requestMatchers("/users/register","/users/login","/carts/**").permitAll()
+                                .requestMatchers(HttpMethod.POST,"/products","/categories").permitAll()
                                 .requestMatchers(HttpMethod.GET,"/products").hasRole("USER")
                 )
                 .csrf(AbstractHttpConfigurer::disable)

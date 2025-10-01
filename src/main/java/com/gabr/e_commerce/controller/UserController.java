@@ -1,5 +1,6 @@
 package com.gabr.e_commerce.controller;
 
+import com.gabr.e_commerce.dto.LoginDto;
 import com.gabr.e_commerce.dto.UserDto;
 import com.gabr.e_commerce.response.ApiResponse;
 import com.gabr.e_commerce.service.UserService;
@@ -22,8 +23,8 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse<>("User registered successfully",user.getUsername()));
     }
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse<String>> loginUser(@RequestBody UserDto userDto){
-        String token = userService.loginUser(userDto);
+    public ResponseEntity<ApiResponse<String>> loginUser(@RequestBody LoginDto loginDto){
+        String token = userService.loginUser(loginDto);
         return ResponseEntity.ok(new ApiResponse<>("User logged in successfully",token));
     }
 

@@ -27,6 +27,8 @@ public class User implements UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role = Role.USER;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Cart cart;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -35,25 +37,25 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-      //  return UserDetails.super.isAccountNonExpired();
-        return true ;
+        //  return UserDetails.super.isAccountNonExpired();
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-     //   return UserDetails.super.isAccountNonLocked();
-        return true ;
+        //   return UserDetails.super.isAccountNonLocked();
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
         // return UserDetails.super.isCredentialsNonExpired();
-        return true ;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-       // return UserDetails.super.isEnabled();
-        return true ;
+        // return UserDetails.super.isEnabled();
+        return true;
     }
 }
